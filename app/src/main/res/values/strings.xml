@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Mangga</string>
+    <string name="title_home">Home</string>
+    <string name="title_list_manga">List</string>
+    <string name="title_profile">Profile</string>
 </resources>
