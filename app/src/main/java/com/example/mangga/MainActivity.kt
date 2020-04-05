@@ -18,6 +18,8 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
+        setSupportActionBar(findViewById(R.id.toolbar))
+
         val navController = this.findNavController(R.id.myNavHostFragment)
 
         val appBarConfiguration = AppBarConfiguration.Builder(
