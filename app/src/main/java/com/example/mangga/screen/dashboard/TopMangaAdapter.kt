@@ -2,13 +2,14 @@ package com.example.mangga.screen.dashboard
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.mangga.R
 import com.example.mangga.databinding.TopMangaItemBinding
 import com.example.mangga.model.Manga
+import com.example.mangga.util.convertDateStringToYearAndMonth
+
 
 class TopMangaAdapter () : RecyclerView.Adapter<TopMangaAdapter.ListViewHolder>() {
 
@@ -34,9 +35,13 @@ class TopMangaAdapter () : RecyclerView.Adapter<TopMangaAdapter.ListViewHolder>(
     }
 
     inner class ListViewHolder (private val itemBinding: TopMangaItemBinding) : RecyclerView.ViewHolder(itemBinding.root){
+
         fun bind(manga : Manga){
+
+
+
             itemBinding.tvMangaTitle.text = manga.title
-            itemBinding.tvMangaReleaseDate.text = manga.startDate
+            itemBinding.tvMangaReleaseDate.text = convertDateStringToYearAndMonth(manga.startDate)
             itemBinding.tvMangaScore.text = manga.score
 
             Glide.with(itemBinding.ivMangaCover.context)
