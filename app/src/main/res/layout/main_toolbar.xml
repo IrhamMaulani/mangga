@@ -30,8 +30,6 @@
         app:layout_constraintStart_toEndOf="@+id/tv_logo"
         app:layout_constraintTop_toTopOf="@+id/tv_logo" />
 
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.appcompat.widget.Toolbar>
