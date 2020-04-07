@@ -15,7 +15,6 @@ import com.example.mangga.databinding.DashboardFragmentBinding
 import com.example.mangga.model.ApiStatus
 import com.example.mangga.model.Manga
 
-
 class DashboardFragment : Fragment() {
 
     private val viewModel: DashboardViewModel by lazy {
@@ -31,45 +30,58 @@ class DashboardFragment : Fragment() {
     ): View? {
         _binding = DashboardFragmentBinding.inflate(inflater, container, false)
 
-        val topMangaRecyclerView = binding.rvRecentManga
-        val statusImage = binding.ivStatus
-
-
-//        viewModel.recentMangas.observe(viewLifecycleOwner, Observer {recentMangas->
-//            Log.i("Main Activity", "Recent Manga ${recentMangas.results}")
-//        })
-
-        topMangaRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        val topMangaAdapter : TopMangaAdapter = TopMangaAdapter()
-        topMangaRecyclerView.adapter = topMangaAdapter
 
         viewModel.topMangas.observe(viewLifecycleOwner, Observer {
-            topMangaAdapter.listManga = it.results
+            showRecyclerTopManga(it.results)
+        })
+
+        viewModel.recentMangas.observe(viewLifecycleOwner, Observer {
+            showRecyclerRecentManga(it.results)
         })
 
         viewModel.status.observe(viewLifecycleOwner, Observer {
-            when (it) {
-                ApiStatus.LOADING -> {
-                    Log.i("Main Activity", it.toString())
-                    statusImage.visibility = View.VISIBLE
-                    statusImage.setImageResource(R.drawable.loading_animation)
-                }
-                ApiStatus.ERROR -> {
-                    Log.i("Main Activity", it.toString())
-                    statusImage.visibility = View.VISIBLE
-//                    statusImage.setImageResource(R.drawable.no_connection)
-                    statusImage.setImageResource(R.drawable.loading_animation)
-                }
-                ApiStatus.DONE -> {
-                    Log.i("Main Activity", it.toString())
-                    statusImage.visibility = View.INVISIBLE
-                }
-            }
+            setComponentStatus(it)
         })
 
         return binding.root
     }
 
+    private fun showRecyclerTopManga(results: List<Manga>) {
+        val topMangaRecyclerView = binding.rvTopManga
+        topMangaRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        topMangaRecyclerView.isNestedScrollingEnabled = false
+        val topMangaAdapter = TopMangaAdapter()
+        topMangaRecyclerView.adapter = topMangaAdapter
+        topMangaAdapter.listManga = results
+    }
+
+    private fun showRecyclerRecentManga(results : List<Manga>){
+        val recentMangaRecyclerView  = binding.rvRecentManga
+        recentMangaRecyclerView.layoutManager = LinearLayoutManager(context)
+        recentMangaRecyclerView.isNestedScrollingEnabled = false
+        val recentMangaAdapter = RecentMangaAdapter()
+        recentMangaRecyclerView.adapter = recentMangaAdapter
+        recentMangaAdapter.listManga = results
+    }
+
+    private fun setComponentStatus(apiStatus: ApiStatus) {
+        when (apiStatus) {
+            ApiStatus.LOADING -> {
+                binding.ivStatus.visibility = View.VISIBLE
+                binding.ivStatus.setImageResource(R.drawable.loading_animation)
+                binding.groupTvInfo.visibility = View.INVISIBLE
+            }
+            ApiStatus.ERROR -> {
+                binding.ivStatus.visibility = View.VISIBLE
+                binding.ivStatus.setImageResource(R.drawable.no_connection)
+                binding.groupTvInfo.visibility = View.INVISIBLE
+            }
+            ApiStatus.DONE -> {
+                binding.ivStatus.visibility = View.INVISIBLE
+                binding.groupTvInfo.visibility = View.VISIBLE
+            }
+        }
+    }
 
 
 }
