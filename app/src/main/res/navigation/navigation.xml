@@ -11,7 +11,7 @@
         android:label="dashboard_fragment"
         tools:layout="@layout/dashboard_fragment" >
         <action
-            android:id="@+id/action_dashboard_to_mangaDetailFragment"
+            android:id="@+id/action_dashboard_to_mangaDetail"
             app:destination="@id/mangaDetailFragment" />
         <action
             android:id="@+id/action_dashboard_to_mangaListFragment"
@@ -21,7 +21,11 @@
         android:id="@+id/mangaDetailFragment"
         android:name="com.example.mangga.screen.mangadetail.MangaDetailFragment"
         android:label="manga_detail_fragment"
-        tools:layout="@layout/manga_detail_fragment" />
+        tools:layout="@layout/manga_detail_fragment" >
+        <argument
+            android:name="mangaId"
+            app:argType="long" />
+    </fragment>
     <fragment
         android:id="@+id/mangaListFragment"
         android:name="com.example.mangga.screen.mangalist.MangaListFragment"
