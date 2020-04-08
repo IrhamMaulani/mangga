@@ -81,6 +81,12 @@ class DashboardFragment : Fragment() {
         val recentMangaRecyclerView  = binding.rvRecentManga
         recentMangaRecyclerView.layoutManager = LinearLayoutManager(context)
         recentMangaRecyclerView.adapter = recentMangaAdapter
+
+        recentMangaAdapter.setOnItemClickCallback(object : RecentMangaAdapter.OnItemClickCallback{
+            override fun onItemClicked(manga: Manga) {
+                viewModel.displayMangaDetail(manga.id)
+            }
+        })
     }
 
     private fun setComponentStatus(apiStatus: ApiStatus) {

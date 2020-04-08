@@ -16,6 +16,7 @@ class RecentMangaAdapter () : RecyclerView.Adapter<RecentMangaAdapter.ListViewHo
             field = value
             notifyDataSetChanged()
         }
+    private var onItemClickCallback: OnItemClickCallback? = null
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -55,6 +56,14 @@ class RecentMangaAdapter () : RecyclerView.Adapter<RecentMangaAdapter.ListViewHo
                 itemBinding.tvStatus.text = itemView.context.getString(R.string.completed)
                 itemBinding.ivStatus.setImageResource(R.drawable.completed_manga)
             }
+
+            itemView.setOnClickListener{ onItemClickCallback?.onItemClicked(manga)}
         }
+    }
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback
+    }
+    interface OnItemClickCallback {
+        fun onItemClicked(manga: Manga)
     }
 }
