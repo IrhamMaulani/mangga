@@ -25,15 +25,19 @@ class DashboardViewModel : ViewModel() {
     val topMangas: LiveData<MangaList>
         get() = _topMangas
 
+    private val _navigateToDetail = MutableLiveData<Long>()
+    val navigateToDetail : LiveData<Long>
+        get() = _navigateToDetail
+
     private var viewModelJob = Job()
 
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
     init {
-        getRecentMangas()
+        getMangas()
     }
 
-    private fun getRecentMangas() {
+    private fun getMangas() {
         coroutineScope.launch {
             val getRecentMangaDeferred = MangaApi.retrofitService.getManga("start_date", 20)
             val getTopMangaDeferred = MangaApi.retrofitService.getManga("score", 5)
@@ -44,13 +48,19 @@ class DashboardViewModel : ViewModel() {
                 _status.value = ApiStatus.DONE
                 _recentMangas.value = listRecentMangaResult
                 _topMangas.value = listTopMangaResult
-
             } catch (e: Exception) {
                 _status.value = ApiStatus.ERROR
                 _recentMangas.value = MangaList(ArrayList())
-
             }
         }
+    }
+
+    fun displayMangaDetail(mangaId : Long){
+        _navigateToDetail.value = mangaId
+    }
+
+    fun displayMangaDetailComplete(){
+        _navigateToDetail.value = null
     }
 
     override fun onCleared() {
