@@ -13,11 +13,6 @@
             layout="@layout/main_toolbar"
             app:layout_constraintBottom_toTopOf="@+id/nav_view" />
 
-    <include
-        android:id="@+id/colapsing_toolbar"
-        layout="@layout/collapsing_toolbar"
-        app:layout_constraintBottom_toTopOf="@+id/nav_view" />
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/nav_view"
             android:layout_width="0dp"
