@@ -29,12 +29,12 @@ class RecentMangaAdapter () : RecyclerView.Adapter<RecentMangaAdapter.ListViewHo
     override fun getItemCount(): Int = listManga.size
 
     override fun onBindViewHolder(holder: RecentMangaAdapter.ListViewHolder, position: Int) {
-        holder.bind(listManga[position], holder)
+        holder.bind(listManga[position])
     }
 
     inner class ListViewHolder (private val itemBinding: RecentMangaItemBinding):
         RecyclerView.ViewHolder(itemBinding.root){
-        fun bind(manga : Manga, holder :RecentMangaAdapter.ListViewHolder ){
+        fun bind(manga : Manga){
             itemBinding.tvMangaTitle.text = manga.title
             itemBinding.tvMangaReleaseDate.text = convertDateStringToYearAndMonth(manga.startDate)
             itemBinding.tvMangaScore.text = manga.score
