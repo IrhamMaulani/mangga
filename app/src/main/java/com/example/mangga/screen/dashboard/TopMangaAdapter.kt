@@ -35,7 +35,8 @@ class TopMangaAdapter () : RecyclerView.Adapter<TopMangaAdapter.ListViewHolder>(
 
     }
 
-    inner class ListViewHolder (private val itemBinding: TopMangaItemBinding) : RecyclerView.ViewHolder(itemBinding.root){
+    inner class ListViewHolder (private val itemBinding: TopMangaItemBinding)
+        : RecyclerView.ViewHolder(itemBinding.root){
         fun bind(manga : Manga){
 
             itemBinding.tvMangaTitle.text = manga.title
