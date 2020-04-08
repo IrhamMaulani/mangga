@@ -3,4 +3,8 @@
     <string name="title_home">Home</string>
     <string name="title_list_manga">List</string>
     <string name="title_profile">Profile</string>
+    <string name="completed">Completed</string>
+    <string name="on_going">On-Going</string>
+    <string name="top_mangas">Top Mangas</string>
+    <string name="recent_mangas">Recent Mangas</string>
 </resources>
