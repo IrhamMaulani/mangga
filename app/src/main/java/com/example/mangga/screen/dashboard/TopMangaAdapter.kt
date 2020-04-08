@@ -12,13 +12,12 @@ import com.example.mangga.util.convertDateStringToYearAndMonth
 
 
 class TopMangaAdapter () : RecyclerView.Adapter<TopMangaAdapter.ListViewHolder>() {
-
      var listManga =   listOf<Manga>()
             set(value){
             field = value
                 notifyDataSetChanged()
     }
-
+    private var onItemClickCallback: OnItemClickCallback? = null
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -32,13 +31,12 @@ class TopMangaAdapter () : RecyclerView.Adapter<TopMangaAdapter.ListViewHolder>(
 
     override fun onBindViewHolder(holder: TopMangaAdapter.ListViewHolder, position: Int) {
         holder.bind(listManga[position])
+
+
     }
 
     inner class ListViewHolder (private val itemBinding: TopMangaItemBinding) : RecyclerView.ViewHolder(itemBinding.root){
-
         fun bind(manga : Manga){
-
-
 
             itemBinding.tvMangaTitle.text = manga.title
             itemBinding.tvMangaReleaseDate.text = convertDateStringToYearAndMonth(manga.startDate)
@@ -51,8 +49,16 @@ class TopMangaAdapter () : RecyclerView.Adapter<TopMangaAdapter.ListViewHolder>(
                         .placeholder(R.drawable.loading_animation)
                         .error(R.drawable.ic_broken_image_gray_24dp))
                 .into(itemBinding.ivMangaCover)
-        }
 
+            itemView.setOnClickListener{ onItemClickCallback?.onItemClicked(manga)}
+        }
+    }
+
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback
+    }
+    interface OnItemClickCallback {
+        fun onItemClicked(manga: Manga)
     }
 
 }
