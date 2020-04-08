@@ -31,13 +31,6 @@
         app:layout_constraintTop_toTopOf="@+id/iv_logo"
         android:textColor="@android:color/black"/>
 
-    <androidx.constraintlayout.widget.Group
-        android:id="@+id/group_toolbar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="visible"
-        app:constraint_referenced_ids="tv_toolbar_name,iv_logo" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.appcompat.widget.Toolbar>

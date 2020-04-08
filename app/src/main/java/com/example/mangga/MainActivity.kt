@@ -24,6 +24,8 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
+        setSupportActionBar(binding.toolbar.toolbar)
+
         val navController = this.findNavController(R.id.myNavHostFragment)
 
         val bottomNavigation = binding.navView
@@ -36,32 +38,19 @@ class MainActivity : AppCompatActivity() {
             bottomNavigation.visibility = it
         })
 
-//        viewModel.toolBarComponentVisibility.observe(this, Observer {
-//            binding.toolbar.groupToolbar.visibility = it
-//        })
-
-        viewModel.toolBarTitle.observe(this, Observer {
-            binding.toolbar.tvToolbarName.text = it.toString()
-        })
-
-
-
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.mangaDetailFragment -> {
-                    setSupportActionBar(binding.toolbar.toolbar)
                     viewModel.hideBottomNav()
-//                    viewModel.hideToolBarComponent()
+                    supportActionBar?.hide()
                 }
                 else -> {
                     setSupportActionBar(binding.toolbar.toolbar)
                     viewModel.showBottomNav()
-//                    viewModel.showToolBarComponent()
-                    viewModel.toolBarTitleComplete(getString(R.string.app_name))
+                    supportActionBar?.show()
                 }
             }
         }
-
         setupActionBarWithNavController(navController, appBarConfiguration)
         bottomNavigation.setupWithNavController(navController)
     }
