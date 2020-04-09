@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView android:id="@+id/tv_genre"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textSize="14sp"
+    android:textStyle="bold"
+    tools:text="Comedy"
+    android:background="@drawable/genre_shape"
+    android:paddingHorizontal="24dp"
+    android:paddingVertical="6dp"
+    android:textColor="@android:color/white"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    />
