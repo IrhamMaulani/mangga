@@ -72,7 +72,7 @@ class DashboardFragment : Fragment() {
 
         topMangaAdapter.setOnItemClickCallback(object : TopMangaAdapter.OnItemClickCallback{
             override fun onItemClicked(manga: Manga) {
-                viewModel.displayMangaDetail(manga.id)
+                manga.id?.let { viewModel.displayMangaDetail(it) }
             }
         })
     }
@@ -84,7 +84,7 @@ class DashboardFragment : Fragment() {
 
         recentMangaAdapter.setOnItemClickCallback(object : RecentMangaAdapter.OnItemClickCallback{
             override fun onItemClicked(manga: Manga) {
-                viewModel.displayMangaDetail(manga.id)
+                manga.id?.let { viewModel.displayMangaDetail(it) }
             }
         })
     }
