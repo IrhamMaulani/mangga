@@ -40,7 +40,11 @@ class TopMangaAdapter () : RecyclerView.Adapter<TopMangaAdapter.ListViewHolder>(
         fun bind(manga : Manga){
 
             itemBinding.tvMangaTitle.text = manga.title
-            itemBinding.tvMangaReleaseDate.text = convertDateStringToYearAndMonth(manga.startDate)
+            itemBinding.tvMangaReleaseDate.text = manga.startDate?.let {
+                convertDateStringToYearAndMonth(
+                    it
+                )
+            }
             itemBinding.tvMangaScore.text = manga.score
 
             Glide.with(itemBinding.ivMangaCover.context)
