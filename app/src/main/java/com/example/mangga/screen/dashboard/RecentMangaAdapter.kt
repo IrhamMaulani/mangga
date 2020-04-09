@@ -37,7 +37,11 @@ class RecentMangaAdapter () : RecyclerView.Adapter<RecentMangaAdapter.ListViewHo
         RecyclerView.ViewHolder(itemBinding.root){
         fun bind(manga : Manga){
             itemBinding.tvMangaTitle.text = manga.title
-            itemBinding.tvMangaReleaseDate.text = convertDateStringToYearAndMonth(manga.startDate)
+            itemBinding.tvMangaReleaseDate.text = manga.startDate?.let {
+                convertDateStringToYearAndMonth(
+                    it
+                )
+            }
             itemBinding.tvMangaScore.text = manga.score
             itemBinding.tvMangaSynopsis.text = manga.synopsis
 
@@ -49,7 +53,7 @@ class RecentMangaAdapter () : RecyclerView.Adapter<RecentMangaAdapter.ListViewHo
                         .error(R.drawable.ic_broken_image_gray_24dp))
                 .into(itemBinding.ivMangaCover)
 
-            if (manga.stillPublish) {
+            if (manga.stillPublish!!) {
                 itemBinding.tvStatus.text = itemView.context.getString(R.string.on_going)
                 itemBinding.ivStatus.setImageResource(R.drawable.on_going_manga)
             }else{
