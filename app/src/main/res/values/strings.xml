@@ -7,4 +7,8 @@
     <string name="on_going">On-Going</string>
     <string name="top_mangas">Top Mangas</string>
     <string name="recent_mangas">Recent Mangas</string>
+    <string name="detail_manga">Detail Manga</string>
+    <string name="author">"Author : %1$s "</string>
+    <string name="genre">Genre :</string>
+    <string name="description">Description</string>
 </resources>
