@@ -2,73 +2,163 @@
 
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:fillViewport="true">
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:fitsSystemWindows="true"
-    android:layout_height="wrap_content"
-    android:layout_width="match_parent">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true">
 
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/detail_manga_toolbar"/>
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/detail_manga_toolbar" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cv_image"
-        android:layout_width="200dp"
-        android:layout_height="270dp"
-        android:layout_marginTop="8dp"
-        android:elevation="10dp"
-        app:cardCornerRadius="12dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar">
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_image"
+            android:layout_width="200dp"
+            android:layout_height="270dp"
+            android:layout_marginTop="8dp"
+            android:elevation="10dp"
+            app:cardCornerRadius="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar">
 
-        <ImageView
-            android:id="@+id/iv_manga_cover"
+            <ImageView
+                android:id="@+id/iv_manga_cover"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/white"
+                android:scaleType="fitXY" />
+
+        </androidx.cardview.widget.CardView>
+
+        <!--        <ImageView-->
+        <!--            android:id="@+id/imageView2"-->
+        <!--            android:layout_width="20dp"-->
+        <!--            android:layout_height="20dp"-->
+        <!--            android:layout_marginTop="16dp"-->
+        <!--            android:src="@drawable/ic_star_gold_24dp"-->
+        <!--            app:layout_constraintStart_toStartOf="@+id/cv_image"-->
+        <!--            app:layout_constraintEnd_toEndOf="@+id/cv_image"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/cv_image" />-->
+
+
+        <TextView
+            android:id="@+id/tv_manga_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:drawableStart="@drawable/ic_star_gold_24dp"
+            android:textSize="18sp"
+            android:drawablePadding="4dp"
+            app:layout_constraintEnd_toEndOf="@+id/cv_image"
+            app:layout_constraintTop_toBottomOf="@+id/cv_image"
+            tools:text="9.23" />
+
+        <TextView
+            android:id="@+id/tv_manga_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:drawableStart="@drawable/ic_date_range_gray_24dp"
+            android:textSize="18sp"
+            android:drawablePadding="4dp"
+            app:layout_constraintStart_toStartOf="@+id/cv_image"
+            app:layout_constraintTop_toBottomOf="@+id/cv_image"
+            tools:text="Dec 2018" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_background"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/white"
-            android:scaleType="fitXY"
-            android:src="@drawable/manga_placeholder" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:elevation="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_manga_score">
 
-    </androidx.cardview.widget.CardView>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="12dp"
+                android:fitsSystemWindows="true">
 
-    <View
-        android:id="@+id/cv_background"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cv_image"
-        android:background="@drawable/top_only_radius" />
+                <TextView
+                    android:id="@+id/tv_manga_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:textColor="@android:color/black"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="JoJo no Kimyou na Bouken Part 7: Steel Ball Run" />
 
-    <TextView
-        android:id="@+id/tv1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/cv_background"
-        app:layout_constraintTop_toTopOf="@id/cv_background"
-        android:text="dadadadada"/>
+                <TextView
+                    android:id="@+id/tv_author"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_manga_title"
+                    tools:text="Author : Nama Penulis" />
 
-    <TextView
-        android:id="@+id/tv2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/cv_background"
-        app:layout_constraintTop_toBottomOf="@id/tv1"
-        android:layout_marginTop="200dp"
-        android:text="dadadadada"/>
+                <TextView
+                    android:id="@+id/tv_description_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/description"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@id/tv_author"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_author" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/tv_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/description"
+                    android:textSize="13sp"
+                    app:layout_constraintStart_toStartOf="@id/tv_description_info"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_description_info"
+                    tools:text="Among the seaside town of Izu's
+                    ocean waves and rays of shining sun, Iori Kitahara is just beginning his freshman year at Izu University. As he moves into his uncle's scuba diving shop, Grand Blue, he eagerly anticipates his dream college life, filled with beautiful girls and good friends. But things don't exactly go according to plan. Upon entering the shop, he encounters a group of rowdy, naked upperclassmen, who immediately coerce him into participating in their alcoholic activities. Though unwilling at first, Iori quickly gives in and becomes the heart and soul of the party. Unfortunately, this earns him the scorn of his cousin, Chisa Kotegawa, who walks in at precisely the wrong time. Undeterred, Iori still vows to realize his ideal college life, but will things go according to plan this time, or will his situation take yet another dive? [Written by MAL Rewrite]" />
+
+                <TextView
+                    android:id="@+id/tv_genre_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/genre"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@id/tv_description"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_description" />
+
+                <com.google.android.flexbox.FlexboxLayout
+                    android:id="@+id/flexbox_genre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="8dp"
+                    app:flexDirection="row"
+                    app:flexWrap="wrap"
+                    app:justifyContent="flex_start"
+                    app:layout_constraintStart_toStartOf="@id/tv_genre_info"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_genre_info" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
