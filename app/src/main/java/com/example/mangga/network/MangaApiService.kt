@@ -9,6 +9,7 @@ import kotlinx.coroutines.Deferred
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 private const val BASE_URL = "https://api.jikan.moe/v3/"
@@ -29,6 +30,10 @@ interface MangaApiService {
     @GET("search/manga")
     fun getManga(@Query("order_by") orderBy : String, @Query("limit") limit: Int):
             Deferred<MangaList>
+
+    @GET("manga/{id}")
+    fun getMangaDetail(@Path("id") id : Long):
+            Deferred<Manga>
 }
 
 object MangaApi {
