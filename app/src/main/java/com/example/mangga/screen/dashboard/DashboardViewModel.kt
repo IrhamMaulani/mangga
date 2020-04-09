@@ -1,5 +1,6 @@
 package com.example.mangga.screen.dashboard
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -40,7 +41,7 @@ class DashboardViewModel : ViewModel() {
     private fun getMangas() {
         coroutineScope.launch {
             val getRecentMangaDeferred = MangaApi.retrofitService.getManga("start_date", 20)
-            val getTopMangaDeferred = MangaApi.retrofitService.getManga("score", 5)
+            val getTopMangaDeferred = MangaApi.retrofitService.getManga("score", 10)
             try {
                 _status.value = ApiStatus.LOADING
                 val listRecentMangaResult = getRecentMangaDeferred.await()
